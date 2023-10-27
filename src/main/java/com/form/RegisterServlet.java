@@ -3,6 +3,7 @@ package com.form;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,8 +30,16 @@ public class RegisterServlet extends HttpServlet{
 			outPrintWriter.println("<h2>Email: "+email+"</h2>");
 			outPrintWriter.println("<h2>Gender: "+gender+"</h2>");
 			outPrintWriter.println("<h2>Course: "+course+"</h2>");
+			
+			// saved to DB(RequestDispatcher Forward)
+//			RequestDispatcher rDispatcher = req.getRequestDispatcher("success");
+//			rDispatcher.forward(req, resp);
 		}else {
-			outPrintWriter.println("<h2>Not Accepted</h2>");
+			outPrintWriter.println("<h2>You Have Not Accepted Terms&Condition</h2>");
+			
+//			Include using RequestDispatcher
+			RequestDispatcher rd = req.getRequestDispatcher("index.html");
+			rd.include(req, resp);
 		}
 		
 	}
